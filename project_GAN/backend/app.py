@@ -12,8 +12,15 @@ def home():
 @app.route('/upload', methods=['POST'])
 def upload_image():
     if 'file' not in request.files:
-        return redirect(request.url)
-    file = request.files['file']
+    flash('No file part', 'error')
+    return redirect(request.url)
+file = request.files['file']
+if file and allowed_file(file.filename):
+    # продолжить обработку
+else:
+    flash('Invalid file format. Please upload a valid image.', 'error')
+    return redirect(request.url)
+
     if file:
         # Сохраняем изображение в БД
         new_image = Image(filename=file.filename)

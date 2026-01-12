@@ -1,0 +1,4 @@
+Flask==2.0.2
+SQLAlchemy==1.4.25
+tensorflow==2.5.0
+mysql-connector-python==8.0.25
